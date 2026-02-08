@@ -1,7 +1,9 @@
-==============================================================================
+=======================================================================
 SDTM DS Domain Creation
-Start Time: 2026-02-08 12:17:48 
-==============================================================================
+Start Time: 2026-02-08 15:11:02 
+======================================================================n
+Loading required packages...
+Packages loaded successfully
 
 Loading input data...
   - ds_raw loaded: 850 records
@@ -24,7 +26,7 @@ tibble [850 × 12] (S3: tbl_df/tbl/data.frame)
  $ DSTERM  : chr [1:850] "Randomized" "Protocol Completed" "Final Lab Visit" "Randomized" ...
  $ DSDECOD : chr [1:850] "RANDOMIZED" "COMPLETED" "FINAL LAB VISIT" "RANDOMIZED" ...
  $ DSCAT   : chr [1:850] "PROTOCOL MILESTONE" "DISPOSITION EVENT" "OTHER EVENT" "PROTOCOL MILESTONE" ...
- $ VISITNUM: chr [1:850] "3" "13" "13" "3" ...
+ $ VISITNUM: num [1:850] 3 13 13 3 5 5 201 3 13 13 ...
  $ VISIT   : chr [1:850] "BASELINE" "WEEK 26" "WEEK 26" "BASELINE" ...
  $ DSDTC   : 'iso8601' chr [1:850] "2014-01-02" "2014-07-02" "2014-07-02" "2012-08-05" ...
  $ DSSTDTC : 'iso8601' chr [1:850] "2014-01-02" "2014-07-02" "2014-07-02" "2012-08-05" ...
@@ -39,16 +41,16 @@ NULL
                                                           3rd Qu.:3.000                                                           
                                                           Max.   :4.000                                                           
                                                                                                                                   
-   VISITNUM            VISIT              DSDTC             DSSTDTC              DSSTDY      
- Length:850         Length:850         Length:850         Length:850         Min.   :-16.00  
- Class :character   Class :character   Class :iso8601     Class :iso8601     1st Qu.:  1.00  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median : 62.00  
-                                                                             Mean   : 85.03  
-                                                                             3rd Qu.:182.00  
-                                                                             Max.   :286.00  
-                                                                             NA's   :52      
+    VISITNUM         VISIT              DSDTC             DSSTDTC              DSSTDY      
+ Min.   :  1.00   Length:850         Length:850         Length:850         Min.   :-16.00  
+ 1st Qu.:  3.00   Class :character   Class :iso8601     Class :iso8601     1st Qu.:  1.00  
+ Median :  7.00   Mode  :character   Mode  :character   Mode  :character   Median : 62.00  
+ Mean   : 15.63                                                            Mean   : 85.03  
+ 3rd Qu.: 13.00                                                            3rd Qu.:182.00  
+ Max.   :201.00                                                            Max.   :286.00  
+                                                                           NA's   :52      
 
 ========================================
 Script completed successfully!
-Completion time: 2026-02-08 12:17:50 
+Completion time: 2026-02-08 15:11:03 
 ========================================
