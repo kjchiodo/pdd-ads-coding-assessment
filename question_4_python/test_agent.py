@@ -1,9 +1,11 @@
 """
 ==============================================================================
 Test Script for Clinical Trial Data Agent
-==============================================================================
 
-This script demonstrates the Clinical Trial Data Agent with 3 example queries.
+Purpose: Demonstrates the Clinical Trial Data Agent with example queries.
+
+Author: Karen Chiodo
+Date: 09 February 2026  
 ==============================================================================
 """
 
