@@ -75,16 +75,16 @@ tryCatch({
     over_variables = TRUE,
     overall = TRUE
   ) |>
-    filter(group2 == "TRT01A" | variable == "TRT01A") # filter to stats we need
+    filter(group2 == "TRT01A" | variable == "TRT01A") # Filter to stats we need
   
   ###### TIDY FOR TABLE ==========================================================
   cat("Combining and reshaping data...\n")
   ae3_ard <- bind_ard(ae_ard, ae2_ard) |>
-    # reshape the data
+    # Reshape the data
     shuffle_card(fill_hierarchical_overall = "TEAE") |>
-    # transform group-level freqs/pcts into a singular "bigN" row
+    # Transform group-level freqs/pcts into a singular "bigN" row
     prep_big_n(vars = "TRT01A") |>
-    # for nested variables, fill any missing values with "Any event"
+    # For nested variables, fill any missing values with "Any event"
     prep_hierarchical_fill(vars = c("AEBODSYS", "AETERM"), fill = "Any event") |>
     mutate(TRT01A = ifelse(TRT01A == "Overall TRT01A", "Total", TRT01A))
   
@@ -113,15 +113,16 @@ tryCatch({
   
   ####### FORMATTING THE TABLE FOR GT ==========================================
   
-  # Get the big N values for headers
-  cat("Extracting denominators for headers...\n")
+  cat("Further preparing table data...\n")
+  
+  # Get big N values
   big_n <- ae4_ard |>
     filter(stat_name == "bigN") |>
     select(TRT01A, stat) |>
     distinct() |>
     deframe()
   
-  # Format n (p%) for each treatment
+  # Format n (p%) helper
   format_n_pct <- function(n, p) {
     case_when(
       is.na(p) | is.na(n) ~ "",
@@ -133,79 +134,38 @@ tryCatch({
     )
   }
   
-  # Extract TEAE row - this goes at the very top
-  cat("Preparing TEAE summary row...\n")
-  teae_row <- ae4_ard |>
-    filter(AETERM == "TEAE",
-           stat_name %in% c("n", "p")) |>
-    select(AEBODSYS, AETERM, TRT01A, stat_name, stat) |>
-    pivot_wider(
-      names_from = c(TRT01A, stat_name),
-      values_from = stat
-    ) |>
-    mutate(
-      AETERM = "Treatment Emergent AEs",
-      Placebo = format_n_pct(Placebo_n, Placebo_p),
-      `Xanomeline High Dose` = format_n_pct(`Xanomeline High Dose_n`, `Xanomeline High Dose_p`),
-      `Xanomeline Low Dose` = format_n_pct(`Xanomeline Low Dose_n`, `Xanomeline Low Dose_p`),
-      Total = format_n_pct(Total_n, Total_p),
-      ord1 = -1,
-      ord2 = 0,
-      is_soc = TRUE
-    ) |>
-    select(AEBODSYS, AETERM, ord1, ord2, Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total, is_soc)
-  
-  # Extract the SOC-level statistics (the "Any event" rows)
-  cat("Preparing SOC-level statistics...\n")
-  soc_stats <- ae4_ard |>
-    filter(AETERM == "Any event",
-           stat_name %in% c("n", "p")) |>
-    select(AEBODSYS, TRT01A, stat_name, stat, ord1) |>
-    pivot_wider(
-      names_from = c(TRT01A, stat_name),
-      values_from = stat
-    ) |>
-    mutate(
-      AETERM = AEBODSYS,
-      Placebo = format_n_pct(Placebo_n, Placebo_p),
-      `Xanomeline High Dose` = format_n_pct(`Xanomeline High Dose_n`, `Xanomeline High Dose_p`),
-      `Xanomeline Low Dose` = format_n_pct(`Xanomeline Low Dose_n`, `Xanomeline Low Dose_p`),
-      Total = format_n_pct(Total_n, Total_p),
-      ord2 = 0,
-      is_soc = TRUE
-    ) |>
-    select(AEBODSYS, AETERM, ord1, ord2, Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total, is_soc)
-  
-  # Prepare term-level data
-  cat("Preparing term-level data...\n")
-  ae_table_data <- ae4_ard |>
-    filter(stat_name %in% c("n", "p"),
-           AETERM != "Any event",
-           AETERM != "TEAE") |>
+  # Prepare all rows at once
+  ae_combined <- ae4_ard |>
+    filter(stat_name %in% c("n", "p")) |>
     pivot_wider(
       id_cols = c(AEBODSYS, AETERM, ord1, ord2),
       names_from = c(TRT01A, stat_name),
       values_from = stat
     ) |>
     mutate(
+      # Format all treatment columns
       Placebo = format_n_pct(Placebo_n, Placebo_p),
       `Xanomeline High Dose` = format_n_pct(`Xanomeline High Dose_n`, `Xanomeline High Dose_p`),
       `Xanomeline Low Dose` = format_n_pct(`Xanomeline Low Dose_n`, `Xanomeline Low Dose_p`),
       Total = format_n_pct(Total_n, Total_p),
-      is_soc = FALSE
+      # Adjust ordering to put TEAE first
+      ord1 = if_else(AETERM == "TEAE", -1, ord1),
+      ord2 = if_else(AETERM == "TEAE", 0, ord2),
+      # Set display names and flags
+      AETERM = case_when(
+        AETERM == "TEAE" ~ "Treatment Emergent AEs",
+        AETERM == "Any event" ~ AEBODSYS,
+        TRUE ~ AETERM
+      ),
+      is_soc = AETERM %in% c("Treatment Emergent AEs", AEBODSYS)
     ) |>
-    select(AEBODSYS, AETERM, ord1, ord2, Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total, is_soc)
-  
-  # Combine rows
-  cat("Combining all rows...\n")
-  ae_combined <- bind_rows(teae_row, soc_stats, ae_table_data) |>
     arrange(ord1, ord2) |>
-    select(-ord1, -ord2, -AEBODSYS)
+    select(AETERM, Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total, is_soc)
   
-  ###### CREATING THE TEAE TABLE ===================================================
+  ###### CREATING THE TEAE TABLE ===============================================
   
-  # Create TEAE table
   cat("Creating formatted table...\n")
+  
   TEAE_table <- ae_combined |>
     gt() |>
     tab_header(
@@ -221,19 +181,13 @@ tryCatch({
     ) |>
     tab_style(
       style = cell_text(weight = "bold"),
-      locations = cells_body(
-        columns = AETERM,
-        rows = is_soc == TRUE
-      )
+      locations = cells_body(columns = AETERM, rows = is_soc == TRUE)
     ) |>
     tab_style(
-      style = cell_text(indent = px(10)),  # Changed from 20 to 10
-      locations = cells_body(
-        columns = AETERM,
-        rows = is_soc == FALSE
-      )
+      style = cell_text(indent = px(10)),
+      locations = cells_body(columns = AETERM, rows = is_soc == FALSE)
     ) |>
-    cols_hide(columns = is_soc) |>
+    cols_hide(is_soc) |>
     tab_footnote(
       footnote = "n (%)",
       locations = cells_column_labels(columns = c(Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total))
@@ -250,14 +204,8 @@ tryCatch({
       table.border.bottom.width = px(2),
       footnotes.font.size = px(9)
     ) |>
-    cols_align(
-      align = "center",
-      columns = c(Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total)
-    ) |>
-    cols_align(
-      align = "left",
-      columns = AETERM
-    )
+    cols_align(align = "center", columns = -AETERM) |>
+    cols_align(align = "left", columns = AETERM)
   
   # Display table
   print(TEAE_table)
