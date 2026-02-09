@@ -1,0 +1,22 @@
+# Requirements for Question 4: GenAI Clinical Data Assistant
+# Python 3.8+
+
+# Data manipulation
+pandas>=3.0.0
+numpy>=2.4.2
+
+# LLM and LangChain (optional - for production use)
+# Uncomment these if using actual OpenAI API:
+langchain>=1.2.9
+openai>=2.17.0
+langchain-openai>=1.1.8
+
+# For enhanced text processing (optional)
+python-dotenv>=1.2.1
+
+# Note: This implementation uses mock LLM responses by default
+# to demonstrate the logic flow without requiring API keys.
+# For production use with actual LLM integration:
+# 1. Uncomment the langchain and openai packages above
+# 2. Set OPENAI_API_KEY environment variable
+# 3. Modify _use_llm_api() method in clinical_data_agent.py

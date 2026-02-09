@@ -132,8 +132,8 @@ pharmaverse-coding-assessment/
 - Natural language to structured query translation
 - Example queries:
   - "Give me subjects who had Adverse events of Moderate severity"
-  - "How many patients experienced Headache?"
-  - "Show me cardiac events"
+  - "Give me the list of subjects with severe headache."
+  - "How many unique subjects experienced nausea?"
 
 **Key Approach**:
 - Defined data schema for LLM context
@@ -175,6 +175,8 @@ install.packages(c(
 ### Python Environment
 ```bash
 cd question_4_python
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -201,6 +203,7 @@ source("question_3_tlg/02_create_visualizations.R")
 ### Question 4
 ```bash
 cd question_4_python
+source .venv/bin/activate
 python test_agent.py
 ```
 
@@ -234,7 +237,7 @@ python test_agent.py
 ## Tools & Technologies
 
 - **R**: 4.2.5
-- **Python**: 3.8+
+- **Python**: 3.14.2
 - **Key R Packages**: admiral, sdtm.oak, gt, gtsummary, ggplot2, dplyr, tidyr
 - **Key Python Packages**: pandas, langchain, openai
 - **Version Control**: Git/GitHub
