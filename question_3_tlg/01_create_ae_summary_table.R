@@ -50,7 +50,7 @@ tryCatch({
   ae_ard <- ard_stack_hierarchical(
     data = adae,
     by = TRT01A,                       # Derived from ACTARM
-    variables = c(AEBODSYS, AETERM),
+    variables = c(AESOC, AETERM),
     statistic = ~ c("n", "p"),         # Calculate count and percentage
     denominator = adsl,
     id = USUBJID,
@@ -68,7 +68,7 @@ tryCatch({
   ae2_ard <- ard_stack_hierarchical(
     data = adae2,
     by = TRT01A, 
-    variables = c(AEBODSYS, AETERM),
+    variables = c(AESOC, AETERM),
     denominator = adsl2,
     statistic = ~ c("n", "p"),
     id = USUBJID,
@@ -85,30 +85,30 @@ tryCatch({
     # Transform group-level freqs/pcts into a singular "bigN" row
     prep_big_n(vars = "TRT01A") |>
     # For nested variables, fill any missing values with "Any event"
-    prep_hierarchical_fill(vars = c("AEBODSYS", "AETERM"), fill = "Any event") |>
+    prep_hierarchical_fill(vars = c("AESOC", "AETERM"), fill = "Any event") |>
     mutate(TRT01A = ifelse(TRT01A == "Overall TRT01A", "Total", TRT01A))
   
-  # Create ordering columns, sort by AEBODSYS
+  # Create ordering columns, sort by AESOC
   cat("Creating ordering columns...\n")
-  ordering_aebodsys <- ae3_ard |>
+  ordering_aesoc <- ae3_ard |>
     filter(TRT01A == "Total", stat_name == "n", AETERM == "Any event") |>
     arrange(desc(stat)) |>
     mutate(ord1 = row_number()) |>
-    select(AEBODSYS, ord1)
+    select(AESOC, ord1)
   
-  # Sort by AETERM after AEBODSYS order
+  # Sort by AETERM after AESOC order
   ordering_aeterm <- ae3_ard |>
     filter(TRT01A == "Total", stat_name == "n") |>
-    group_by(AEBODSYS) |>
+    group_by(AESOC) |>
     arrange(desc(stat)) |>
     mutate(ord2 = row_number()) |>
-    select(AEBODSYS, AETERM, ord2)
+    select(AESOC, AETERM, ord2)
   
   # Join on our ordering columns and keep required columns
   ae4_ard <- ae3_ard |>
-    full_join(ordering_aebodsys, by = "AEBODSYS") |>
-    full_join(ordering_aeterm, by = c("AEBODSYS", "AETERM")) |>
-    select(AEBODSYS, AETERM, ord1, ord2, stat, stat_name, TRT01A)
+    full_join(ordering_aesoc, by = "AESOC") |>
+    full_join(ordering_aeterm, by = c("AESOC", "AETERM")) |>
+    select(AESOC, AETERM, ord1, ord2, stat, stat_name, TRT01A)
   
   
   ####### FORMATTING THE TABLE FOR GT ==========================================
@@ -138,7 +138,7 @@ tryCatch({
   ae_combined <- ae4_ard |>
     filter(stat_name %in% c("n", "p")) |>
     pivot_wider(
-      id_cols = c(AEBODSYS, AETERM, ord1, ord2),
+      id_cols = c(AESOC, AETERM, ord1, ord2),
       names_from = c(TRT01A, stat_name),
       values_from = stat
     ) |>
@@ -154,10 +154,10 @@ tryCatch({
       # Set display names and flags
       AETERM = case_when(
         AETERM == "TEAE" ~ "Treatment Emergent AEs",
-        AETERM == "Any event" ~ AEBODSYS,
+        AETERM == "Any event" ~ AESOC,
         TRUE ~ AETERM
       ),
-      is_soc = AETERM %in% c("Treatment Emergent AEs", AEBODSYS)
+      is_soc = AETERM %in% c("Treatment Emergent AEs", AESOC)
     ) |>
     arrange(ord1, ord2) |>
     select(AETERM, Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`, Total, is_soc)
