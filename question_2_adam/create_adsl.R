@@ -600,8 +600,8 @@ tryCatch({
   ###### SAVING DATASET AND LOG FILE =============================================
   # Save the dataset
   cat("Saving ADSL dataset...\n")
-  saveRDS(ds, "question_2_adam/adsl.rds")
-  write.csv(ds, "question_2_adam/adsl.csv", row.names = FALSE)
+  saveRDS(adsl, "question_2_adam/adsl.rds")
+  write.csv(adsl, "question_2_adam/adsl.csv", row.names = FALSE)
   cat("Dataset saved successfully\n\n")
   
   # Print summary

@@ -1,6 +1,6 @@
 =======================================================================
 ADSL Creation
-Start Time: 2026-02-09 14:49:55 
+Start Time: 2026-02-11 09:32:07 
 =====================================================================
 
 Loading required packages...
@@ -97,25 +97,25 @@ tibble [306 × 63] (S3: tbl_df/tbl/data.frame)
   ..- attr(*, "label")= chr "Screen Failure Date"
  $ FRVDT   : chr [1:306] "2014-07-02" "2013-02-18" "2014-01-14" "2014-09-15" ...
   ..- attr(*, "label")= chr "Final Retrieval Visit Date"
- $ RANDDT  : Date[1:306], format: "2014-01-02" "2012-08-05" "2013-07-19" "2014-03-18" ...
- $ TRTSDTM : POSIXct[1:306], format: "2014-01-02" "2012-08-05" "2013-07-19" "2014-03-18" ...
+ $ RANDDT  : Date[1:306], format: "2014-01-02" "2012-08-05" "2013-07-19" ...
+ $ TRTSDTM : POSIXct[1:306], format: "2014-01-02" "2012-08-05" "2013-07-19" ...
  $ TRTSTMF : chr [1:306] "H" "H" "H" "H" ...
   ..- attr(*, "label")= chr "Time of First Exposure Imput. Flag"
- $ TRTEDTM : POSIXct[1:306], format: "2014-07-02 23:59:59" "2012-09-01 23:59:59" "2014-01-14 23:59:59" "2014-03-31 23:59:59" ...
+ $ TRTEDTM : POSIXct[1:306], format: "2014-07-02 23:59:59" "2012-09-01 23:59:59" "2014-01-14 23:59:59" ...
  $ TRTETMF : chr [1:306] "H" "H" "H" "H" ...
   ..- attr(*, "label")= chr "Time of Last Exposure Imput. Flag"
- $ TRTSDT  : Date[1:306], format: "2014-01-02" "2012-08-05" "2013-07-19" "2014-03-18" ...
- $ TRTEDT  : Date[1:306], format: "2014-07-02" "2012-09-01" "2014-01-14" "2014-03-31" ...
+ $ TRTSDT  : Date[1:306], format: "2014-01-02" "2012-08-05" "2013-07-19" ...
+ $ TRTEDT  : Date[1:306], format: "2014-07-02" "2012-09-01" "2014-01-14" ...
  $ TRTDURD : num [1:306] 182 28 180 14 183 26 NA 190 10 55 ...
   ..- attr(*, "label")= chr "Total Treatment Duration (Days)"
- $ EOSDT   : Date[1:306], format: "2014-07-02" "2012-09-02" "2014-01-14" "2014-04-14" ...
+ $ EOSDT   : Date[1:306], format: "2014-07-02" "2012-09-02" "2014-01-14" ...
  $ EOSSTT  : chr [1:306] "COMPLETED" "DISCONTINUED" "COMPLETED" "DISCONTINUED" ...
   ..- attr(*, "label")= chr "End of Study Status"
  $ DCSREAS : chr [1:306] NA "ADVERSE EVENT" NA "STUDY TERMINATED BY SPONSOR" ...
   ..- attr(*, "label")= chr "Reason for Discontinuation"
  $ DCSREASP: chr [1:306] NA "ADVERSE EVENT" NA "SPONSOR DECISION (STUDY OR PATIENT DISCONTINUED BY THE SPONSOR)" ...
   ..- attr(*, "label")= chr "Reason for Disc from Study (Spec)"
- $ DTHDT   : Date[1:306], format: NA NA NA NA ...
+ $ DTHDT   : Date[1:306], format: NA NA NA ...
  $ DTHDTF  : chr [1:306] NA NA NA NA ...
   ..- attr(*, "label")= chr "Date of Death Imputation Flag"
  $ DTHCAUS : chr [1:306] NA NA NA NA ...
@@ -138,7 +138,7 @@ tibble [306 × 63] (S3: tbl_df/tbl/data.frame)
   ..- attr(*, "label")= chr "Death After 30 Days from Last Trt Flag"
  $ DTHB30FL: chr [1:306] NA NA NA NA ...
   ..- attr(*, "label")= chr "Death Within 30 Days of First Trt Flag"
- $ LSTALVDT: Date[1:306], format: "2014-07-02" "2013-02-18" "2014-01-14" "2014-09-15" ...
+ $ LSTALVDT: Date[1:306], format: "2014-07-02" "2013-02-18" "2014-01-14" ...
  $ ITTFL   : chr [1:306] "Y" "Y" "Y" "Y" ...
   ..- attr(*, "label")= chr "Intent-to-Treat Population Flag"
  $ SAFFL   : chr [1:306] "Y" "Y" "Y" "Y" ...
@@ -154,70 +154,78 @@ tibble [306 × 63] (S3: tbl_df/tbl/data.frame)
  - attr(*, "label")= chr "Demographics"
 NULL
 
-   STUDYID            USUBJID             SUBJID            RFSTDTC            RFENDTC            RFXSTDTC        
- Length:306         Length:306         Length:306         Length:306         Length:306         Length:306        
- Class :character   Class :character   Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
-   RFXENDTC           RFICDTC            RFPENDTC            DTHDTC             DTHFL              SITEID         
- Length:306         Length:306         Length:306         Length:306         Length:306         Length:306        
- Class :character   Class :character   Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
-      AGE            AGEU               SEX                RACE              ETHNIC             ARMCD          
- Min.   :50.00   Length:306         Length:306         Length:306         Length:306         Length:306        
- 1st Qu.:70.25   Class :character   Class :character   Class :character   Class :character   Class :character  
- Median :77.00   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
- Mean   :75.09                                                                                                 
- 3rd Qu.:81.00                                                                                                 
- Max.   :89.00                                                                                                 
-                                                                                                               
-     ARM              ACTARMCD            ACTARM            COUNTRY             DMDTC                DMDY    
- Length:306         Length:306         Length:306         Length:306         Length:306         Min.   :-37  
- Class :character   Class :character   Class :character   Class :character   Class :character   1st Qu.:-14  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :-10  
-                                                                                                Mean   :-11  
-                                                                                                3rd Qu.: -7  
-                                                                                                Max.   : -2  
-                                                                                                NA's   :52   
-    TRT01P             TRT01A             TRT01PN         TRT01AN         AGEGR9             AGEGR9N     
- Length:306         Length:306         Min.   :1.000   Min.   :1.000   Length:306         Min.   :2.000  
- Class :character   Class :character   1st Qu.:1.000   1st Qu.:1.000   Class :character   1st Qu.:3.000  
- Mode  :character   Mode  :character   Median :2.000   Median :2.000   Mode  :character   Median :3.000  
-                                       Mean   :1.992   Mean   :1.945                      Mean   :2.997  
-                                       3rd Qu.:3.000   3rd Qu.:3.000                      3rd Qu.:3.000  
-                                       Max.   :3.000   Max.   :3.000                      Max.   :3.000  
-                                       NA's   :52      NA's   :52                                        
-    SCRFDT             FRVDT               RANDDT              TRTSDTM                      TRTSTMF         
- Length:306         Length:306         Min.   :2012-07-09   Min.   :2012-07-09 00:00:00   Length:306        
- Class :character   Class :character   1st Qu.:2013-01-26   1st Qu.:2013-01-26 06:00:00   Class :character  
- Mode  :character   Mode  :character   Median :2013-06-13   Median :2013-06-13 12:00:00   Mode  :character  
-                                       Mean   :2013-06-17   Mean   :2013-06-17 12:28:20                     
-                                       3rd Qu.:2013-11-07   3rd Qu.:2013-11-07 06:00:00                     
-                                       Max.   :2014-09-02   Max.   :2014-09-02 00:00:00                     
-                                       NA's   :52           NA's   :52                                      
-    TRTEDTM                      TRTETMF              TRTSDT               TRTEDT              TRTDURD     
- Min.   :2012-08-28 23:59:59   Length:306         Min.   :2012-07-09   Min.   :2012-08-28   Min.   :  1.0  
- 1st Qu.:2013-05-10 23:59:59   Class :character   1st Qu.:2013-01-26   1st Qu.:2013-05-10   1st Qu.: 44.0  
- Median :2013-09-30 23:59:59   Mode  :character   Median :2013-06-13   Median :2013-09-30   Median :132.0  
- Mean   :2013-10-10 19:42:50                      Mean   :2013-06-17   Mean   :2013-10-09   Mean   :115.2  
- 3rd Qu.:2014-03-10 11:59:59                      3rd Qu.:2013-11-07   3rd Qu.:2014-03-09   3rd Qu.:183.0  
- Max.   :2015-03-05 23:59:59                      Max.   :2014-09-02   Max.   :2015-03-05   Max.   :212.0  
- NA's   :54                                       NA's   :52           NA's   :54           NA's   :54     
-     EOSDT               EOSSTT            DCSREAS            DCSREASP             DTHDT               DTHDTF         
- Min.   :2012-09-01   Length:306         Length:306         Length:306         Min.   :2013-01-14   Length:306        
- 1st Qu.:2013-05-16   Class :character   Class :character   Class :character   1st Qu.:2013-04-24   Class :character  
- Median :2013-09-30   Mode  :character   Mode  :character   Mode  :character   Median :2013-08-02   Mode  :character  
- Mean   :2013-10-15                                                            Mean   :2013-10-26                     
- 3rd Qu.:2014-03-20                                                            3rd Qu.:2014-03-18                     
- Max.   :2015-03-05                                                            Max.   :2014-11-01                     
- NA's   :52                                                                    NA's   :303                            
+   STUDYID            USUBJID             SUBJID            RFSTDTC            RFENDTC         
+ Length:306         Length:306         Length:306         Length:306         Length:306        
+ Class :character   Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+   RFXSTDTC           RFXENDTC           RFICDTC            RFPENDTC            DTHDTC         
+ Length:306         Length:306         Length:306         Length:306         Length:306        
+ Class :character   Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+    DTHFL              SITEID               AGE            AGEU               SEX           
+ Length:306         Length:306         Min.   :50.00   Length:306         Length:306        
+ Class :character   Class :character   1st Qu.:70.25   Class :character   Class :character  
+ Mode  :character   Mode  :character   Median :77.00   Mode  :character   Mode  :character  
+                                       Mean   :75.09                                        
+                                       3rd Qu.:81.00                                        
+                                       Max.   :89.00                                        
+                                                                                            
+     RACE              ETHNIC             ARMCD               ARM              ACTARMCD        
+ Length:306         Length:306         Length:306         Length:306         Length:306        
+ Class :character   Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+    ACTARM            COUNTRY             DMDTC                DMDY        TRT01P             TRT01A         
+ Length:306         Length:306         Length:306         Min.   :-37   Length:306         Length:306        
+ Class :character   Class :character   Class :character   1st Qu.:-14   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Median :-10   Mode  :character   Mode  :character  
+                                                          Mean   :-11                                        
+                                                          3rd Qu.: -7                                        
+                                                          Max.   : -2                                        
+                                                          NA's   :52                                         
+    TRT01PN         TRT01AN         AGEGR9             AGEGR9N         SCRFDT             FRVDT          
+ Min.   :1.000   Min.   :1.000   Length:306         Min.   :2.000   Length:306         Length:306        
+ 1st Qu.:1.000   1st Qu.:1.000   Class :character   1st Qu.:3.000   Class :character   Class :character  
+ Median :2.000   Median :2.000   Mode  :character   Median :3.000   Mode  :character   Mode  :character  
+ Mean   :1.992   Mean   :1.945                      Mean   :2.997                                        
+ 3rd Qu.:3.000   3rd Qu.:3.000                      3rd Qu.:3.000                                        
+ Max.   :3.000   Max.   :3.000                      Max.   :3.000                                        
+ NA's   :52      NA's   :52                                                                              
+     RANDDT              TRTSDTM                      TRTSTMF             TRTEDTM                   
+ Min.   :2012-07-09   Min.   :2012-07-09 00:00:00   Length:306         Min.   :2012-08-28 23:59:59  
+ 1st Qu.:2013-01-26   1st Qu.:2013-01-26 06:00:00   Class :character   1st Qu.:2013-05-10 23:59:59  
+ Median :2013-06-13   Median :2013-06-13 12:00:00   Mode  :character   Median :2013-09-30 23:59:59  
+ Mean   :2013-06-17   Mean   :2013-06-17 12:28:20                      Mean   :2013-10-10 19:42:50  
+ 3rd Qu.:2013-11-07   3rd Qu.:2013-11-07 06:00:00                      3rd Qu.:2014-03-10 11:59:59  
+ Max.   :2014-09-02   Max.   :2014-09-02 00:00:00                      Max.   :2015-03-05 23:59:59  
+ NA's   :52           NA's   :52                                       NA's   :54                   
+   TRTETMF              TRTSDT               TRTEDT              TRTDURD          EOSDT           
+ Length:306         Min.   :2012-07-09   Min.   :2012-08-28   Min.   :  1.0   Min.   :2012-09-01  
+ Class :character   1st Qu.:2013-01-26   1st Qu.:2013-05-10   1st Qu.: 44.0   1st Qu.:2013-05-16  
+ Mode  :character   Median :2013-06-13   Median :2013-09-30   Median :132.0   Median :2013-09-30  
+                    Mean   :2013-06-17   Mean   :2013-10-09   Mean   :115.2   Mean   :2013-10-15  
+                    3rd Qu.:2013-11-07   3rd Qu.:2014-03-09   3rd Qu.:183.0   3rd Qu.:2014-03-20  
+                    Max.   :2014-09-02   Max.   :2015-03-05   Max.   :212.0   Max.   :2015-03-05  
+                    NA's   :52           NA's   :54           NA's   :54      NA's   :52          
+    EOSSTT            DCSREAS            DCSREASP             DTHDT               DTHDTF         
+ Length:306         Length:306         Length:306         Min.   :2013-01-14   Length:306        
+ Class :character   Class :character   Class :character   1st Qu.:2013-04-24   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Median :2013-08-02   Mode  :character  
+                                                          Mean   :2013-10-26                     
+                                                          3rd Qu.:2014-03-18                     
+                                                          Max.   :2014-11-01                     
+                                                          NA's   :303                            
    DTHCAUS             DTHDOM              DTHSEQ        DTHCGR1              DTHADY          LDDTHELD  
  Length:306         Length:306         Min.   :1.000   Length:306         Min.   : 12.00   Min.   :0.0  
  Class :character   Class :character   1st Qu.:1.000   Class :character   1st Qu.: 36.50   1st Qu.:0.5  
@@ -226,15 +234,15 @@ NULL
                                        3rd Qu.:5.000                      3rd Qu.:118.00   3rd Qu.:1.5  
                                        Max.   :9.000                      Max.   :175.00   Max.   :2.0  
                                        NA's   :303                        NA's   :303      NA's   :303  
-   LDDTHGR1           DTH30FL            DTHA30FL           DTHB30FL            LSTALVDT             ITTFL          
- Length:306         Length:306         Length:306         Length:306         Min.   :2012-08-13   Length:306        
- Class :character   Class :character   Class :character   Class :character   1st Qu.:2013-06-03   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :2013-10-14   Mode  :character  
-                                                                             Mean   :2013-10-20                     
-                                                                             3rd Qu.:2014-03-12                     
-                                                                             Max.   :2015-03-05                     
-                                                                                                                    
-    SAFFL              RANDFL             FASFL             COMPLFL            DISCONFL        
+   LDDTHGR1           DTH30FL            DTHA30FL           DTHB30FL            LSTALVDT         
+ Length:306         Length:306         Length:306         Length:306         Min.   :2012-08-13  
+ Class :character   Class :character   Class :character   Class :character   1st Qu.:2013-06-03  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Median :2013-10-14  
+                                                                             Mean   :2013-10-20  
+                                                                             3rd Qu.:2014-03-12  
+                                                                             Max.   :2015-03-05  
+                                                                                                 
+    ITTFL              SAFFL              RANDFL             FASFL             COMPLFL         
  Length:306         Length:306         Length:306         Length:306         Length:306        
  Class :character   Class :character   Class :character   Class :character   Class :character  
  Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
@@ -242,8 +250,16 @@ NULL
                                                                                                
                                                                                                
                                                                                                
+   DISCONFL        
+ Length:306        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+                   
 
 ========================================
 Script completed successfully!
-Completion time: 2026-02-09 14:50:00 
+Completion time: 2026-02-11 09:32:10 
 ========================================
